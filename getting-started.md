@@ -89,7 +89,7 @@ Permanent, relative small storage space for things like source code, shell scrip
 
 #### $LSCRATCH Storage :id=lscratch
 
-It may be beneficial to bulk move data from somewhere else onto the local compute node to guarantee the quickest and fastest access to that data - especially if a lot of random input/output is performed on that data. The limitatations of using this method are that you will be constrained by the amonut of storage available on the Compute Node and that clustered software (eg MPI jobs) may need to be especially programmed to take advantage of this. In addition, any data stored under $LSCRATCH will be automatically deleted after each job. This is therefore ideal for intermediate data or very read heavy data.
+It may be beneficial to bulk move data from somewhere else onto the local compute node to guarantee the quickest and fastest access to that data - especially if a lot of random input/output is performed on that data. The limitatations of using this method are that you will be constrained by the amount of storage available on the Compute Node and that clustered software (eg MPI jobs) may need to be especially programmed to take advantage of this. In addition, any data stored under $LSCRATCH will be automatically deleted after each job. This is therefore ideal for intermediate data or very read heavy data.
 
 #### $SCRATCH Storage :id=scratch
 
