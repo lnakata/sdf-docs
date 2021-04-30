@@ -56,7 +56,7 @@ Our Login Nodes for SDF are
 
 |   |   |
 |---|---|
-| SSH | sdf-login.slac.stanford.edu |
+| SSH | sdf.slac.stanford.edu |
 | Web | sdf.slac.stanford.edu |
 
 We have numerous types of [Compute Nodes](resources-and-allocations.md#compute) - both CPU and GPU and a high speed [Shared File System](resources-and-allocations.md#storage) as part of SDF.
