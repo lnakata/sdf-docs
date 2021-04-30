@@ -78,30 +78,30 @@ We have 4 kinds of on disk immediate access storage available; each have their l
 
 | File System  | Description | Snapshots  | Backup  | Purging  | Access | Retention | Speed |
 |---|---|---|---|---|---|---|---|
-| [$HOME](#home) | General user level configuration files | no | yes * | no | user | Forever | Fast |
+| [$HOME](#home) | General user level configuration files | no | yes * | no | user | Indefinite | Fast |
 | [$LSCRATCH](#lscratch) | Local (to compute node) temporary storage | no | no | yes | user | Per Job | Fastest |
 | [$SCRATCH](#scratch) | Global (to cluster) temporary storage | no | no | yes | group | 1 month* | Fast |
-| [$GROUP](#scratch) | Group space for shared data and programs | no | no | no | group | Forever | Fast |
+| [$GROUP](#scratch) | Group space for shared data and programs | no | no | no | group | Indefinite | Fast |
 
 #### $HOME Storage :id=home
 
-Permanent, relative small storage space for things like source code, shell scripts, etc. Our current file system will place small files (<1MB) SSD and also spread larger files across multiple hard drives in order to improve performance and scalability.
+Permanent, relatively small storage space for things like source code, shell scripts, etc.  Our current file system will spread larger files across multiple hard drives in order to improve performance and scalability.
 
 #### $LSCRATCH Storage :id=lscratch
 
-It may be beneficial to bulk move data from somewhere else onto the local compute node to guarantee the quickest and fastest access to that data - especially if a lot of random input/output is performed on that data. The limitatations of using this method are that you will be constrained by the amonut of storage available on the Compute Node and that clustered software (eg MPI jobs) may need to be especially programmed to take advantage of this. In addition, any data stored under $LSCRATCH will be automatically deleted after each job. This is therefore ideal for intermediate data or very read heavy data.
+It may be beneficial to bulk move data from somewhere else onto the local compute node to guarantee the quickest and fastest access to that data, especially if a lot of random input/output is performed on that data.  The limitatations of using this method are that you will be constrained by the amonut of storage available on the Compute Node and that clustered software (e.g., MPI jobs) may need to be especially programmed to take advantage of this.  In addition, any data stored under $LSCRATCH will be automatically deleted after each job.  This is therefore ideal for intermediate data or very read heavy data.
 
 #### $SCRATCH Storage :id=scratch
 
-We provide a small shared $SCRATCH space that is globally shared on all Compute Nodes. This is similar to $LSCRATCH but is not just locally bound to a single node. It is also not purged after each job, but upon a schedule whereby any data which has not been read/modified over 1 month??? will be automatically deleted. If you wish to keep the data for longer, then we recommend moving the data into [$GROUP storage](#group). Due to the nature of the performance edge of this storage, we also enforce a quota. $SCRATCH is especially useful for temporary data such as checkpoints and application input and output.
+We provide a small shared $SCRATCH space that is globally shared on all Compute Nodes. This is similar to $LSCRATCH but is not just locally bound to a single node. It is also not purged after each job, but upon a schedule whereby any data which has not been read/modified over a specified period will be automatically deleted. If you wish to keep the data for longer, then we recommend moving the data into [$GROUP storage](#group). Due to the shared nature of this storage, we also enforce a quota. $SCRATCH is especially useful for temporary data such as checkpoints and application input and output.
 
-?> __TODO__ what is quota? what conditions is it enforced?
+?> __TODO__ What is quota? Under what conditions is it enforced?
 
 #### $GROUP Storage :id=group
 
 ?> How do we define what a group is?
 
-For long term storage of data, we recommend that users keep data under $GROUP storage. This is tuned for large datasets and shared colloration efforts where it may be necessary to share data within a group of researchers. Due to the volume of data we expect, we enforce a [quota] on the group space. Users may be members of numerous different groups/experiments and therefore have access to numerous different junctions/paths for different groups/experiments.
+For long term storage of data, we recommend that users keep data under $GROUP storage. This is tuned for large datasets and shared collaboration efforts where it may be necessary to share data within a group of researchers. Due to the volume of data we expect, we enforce a [quota] on the group space. Users may be members of numerous different groups/experiments and therefore have access to numerous different junctions/paths for different groups/experiments.
 
 When you [purchase extra storage](resources-and-allocations?id=storage-1) you will primarily be adding space to $GROUP.
 
@@ -120,7 +120,7 @@ When you [purchase extra storage](resources-and-allocations?id=storage-1) you wi
 Traditional secure copies (scp) will work and SDF is a secure [Globus](https://www.globus.org/how-it-works) endpoint. 
 
 #### Help! I've lost some files! What can I do?
-Some directories are periodically backed up. [Contact us](contact-us.md) to retrieve the last back up. 
+Home directories are backed up nightly. Group directories are backed up only by request and currently require a media purchase.  [Contact us](contact-us.md) to restore the last back up or to arrange for group directory backups. 
 
 ## Running Jobs
 Depending on your application, you can run jobs in a variety ways:   
@@ -193,23 +193,23 @@ When compiling, avoid placing large amounts of software in your $HOME area, as s
 
 - Don't perform any compute or disk intensive tasks on the Login Nodes!
 
-- Do be respectful of other's jobs - you shall be sharing a limited set of nodes with many many other users. Please consider the type, size and quantity of jobs that you submit so that you do not starve others of compute resources. We do implement [fair sharing] to limit the impact upon others, however there are ways to game the system ;)
+- Do be respectful of other's jobs.  You will be sharing a limited set of nodes with many other users. Please consider the type, size and quantity of jobs that you submit so that you do not starve others of compute resources. We do implement [fair sharing] to limit the impact upon others; please do not try to game the system.
 
-- Don't run interactive sessiosn for a long time - do not treat the Compute Nodes as your private remote terminal. Opening an interactive session (using `srun --pty bash`) and not actually running any heavy processes is very wasteful of resources and could potentially be preventing others from dong their work. Consider using [Jupyter] of just using the Login Nodes for light tasks.
+- Don't run interactive sessions for a long time, nor treat the Compute Nodes as your private remote terminal. Opening an interactive session (using `srun --pty bash`) and not actually running any heavy processes is very wasteful of resources and could potentially be preventing others from doing their work. Consider using [Jupyter] or just using the Login Nodes for light tasks.
 
 ?> where should we compile code?
 
 - Don't run your jobs from your `$HOME` directory (does this actually matter due to our SDF architecture?)
 
-- Avoid keeping many (hundreds) of files in a single directory if possible - file systems typically do a lot better when you use a small number of large files.
+- Avoid keeping many (hundreds) of files in a single directory if possible. File systems typically do a lot better when you use a small number of large files.
 
-- Do keep an eye on your file system [quotas] - your jobs will likely fail if it cannot write to disk due to a full quota. You can either choose a different file system to write to, or request a [quota increase]
+- Do keep an eye on your file system [quotas]. Your jobs will likely fail if they cannot write to disk due to a full quota. You can either choose a different file system to write to, or request a [quota increase]
 
-- Limit I/O intensive sessions where your jobs reads or writes a lot of data, or performs intensive meta data operations such as stat'ing many files or directories and opening and closing files in quick succession.
+- Limit I/O intensive sessions where your jobs read or write a lot of data, or perform intensive meta data operations such as stat'ing many files or directories and opening and closing files in quick succession.
 
 - Do launch test jobs requesting a smaller resource before launching many (potentially hundreds) of jobs.
 
-- Do request only the resources that you need. If you ask for more time or more CPU's or GPU's than you can actually use in your job, then not only will you be reducing your fairshare so that your later jobs may be de-prioritised, but it also prevents others from using potentially idle resources.
+- Do request only the resources that you need. If you ask for more time, CPU's or GPU's than you can actually use in your jobs, then not only will you be reducing your fairshare so that your later jobs may be de-prioritised, but you also prevent others from using potentially idle resources.
 
 
 
