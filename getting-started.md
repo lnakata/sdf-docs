@@ -78,22 +78,22 @@ We have 4 kinds of on disk immediate access storage available; each have their l
 
 | File System  | Description | Snapshots  | Backup  | Purging  | Access | Retention | Speed |
 |---|---|---|---|---|---|---|---|
-| [$HOME](#home) | General user level configuration files | no | yes * | no | user | Forever | Fast |
+| [$HOME](#home) | General user level configuration files | no | yes * | no | user | Indefinite | Fast |
 | [$LSCRATCH](#lscratch) | Local (to compute node) temporary storage | no | no | yes | user | Per Job | Fastest |
 | [$SCRATCH](#scratch) | Global (to cluster) temporary storage | no | no | yes | group | 1 month* | Fast |
-| [$GROUP](#scratch) | Group space for shared data and programs | no | no | no | group | Forever | Fast |
+| [$GROUP](#scratch) | Group space for shared data and programs | no | no | no | group | Indefinite | Fast |
 
 #### $HOME Storage :id=home
 
-Permanent, relative small storage space for things like source code, shell scripts, etc. Our current file system will place small files (<1MB) SSD and also spread larger files across multiple hard drives in order to improve performance and scalability.
+Permanent, relative small storage space for things like source code, shell scripts, etc. Our current file system will spread larger files across multiple storage targets in order to improve performance and scalability.
 
 #### $LSCRATCH Storage :id=lscratch
 
-It may be beneficial to bulk move data from somewhere else onto the local compute node to guarantee the quickest and fastest access to that data - especially if a lot of random input/output is performed on that data. The limitatations of using this method are that you will be constrained by the amonut of storage available on the Compute Node and that clustered software (eg MPI jobs) may need to be especially programmed to take advantage of this. In addition, any data stored under $LSCRATCH will be automatically deleted after each job. This is therefore ideal for intermediate data or very read heavy data.
+It may be beneficial to bulk move data from somewhere else onto the local compute node to guarantee the quickest and fastest access to that data - especially if a lot of random input/output is performed on that data. The limitatations of using this method are that you will be constrained by the amount of storage available on the Compute Node and that clustered software (e.g., MPI jobs) may need to be especially programmed to take advantage of this. In addition, any data stored under $LSCRATCH will be automatically deleted after each job. This is therefore ideal for intermediate or very read heavy data.
 
 #### $SCRATCH Storage :id=scratch
 
-We provide a small shared $SCRATCH space that is globally shared on all Compute Nodes. This is similar to $LSCRATCH but is not just locally bound to a single node. It is also not purged after each job, but upon a schedule whereby any data which has not been read/modified over 1 month??? will be automatically deleted. If you wish to keep the data for longer, then we recommend moving the data into [$GROUP storage](#group). Due to the nature of the performance edge of this storage, we also enforce a quota. $SCRATCH is especially useful for temporary data such as checkpoints and application input and output.
+We provide a small shared $SCRATCH space that is globally shared on all Compute Nodes. This is similar to $LSCRATCH but is not just locally bound to a single node. It is also not purged after each job, but upon a schedule whereby any data which has not been read/modified over 1 month will be automatically deleted. If you wish to keep the data for longer, then you must move it into [$GROUP storage](#group). We also enforce a quota. $SCRATCH is especially useful for temporary data such as checkpoints and application input and output.
 
 ?> __TODO__ what is quota? what conditions is it enforced?
 
@@ -101,7 +101,7 @@ We provide a small shared $SCRATCH space that is globally shared on all Compute 
 
 ?> How do we define what a group is?
 
-For long term storage of data, we recommend that users keep data under $GROUP storage. This is tuned for large datasets and shared colloration efforts where it may be necessary to share data within a group of researchers. Due to the volume of data we expect, we enforce a [quota] on the group space. Users may be members of numerous different groups/experiments and therefore have access to numerous different junctions/paths for different groups/experiments.
+For long term data retention, users should keep data within $GROUP storage (smaller, non-shared data might be kept in $HOME). $GROUP is tuned for large datasets and shared collaboration efforts where it may be necessary to share data among a group of researchers. Due to the volume of data we expect, we enforce a [quota] on the group space. Users may be members of numerous different groups/experiments and therefore have access to numerous different junctions/paths for different groups/experiments.
 
 When you [purchase extra storage](resources-and-allocations?id=storage-1) you will primarily be adding space to $GROUP.
 
@@ -120,7 +120,7 @@ When you [purchase extra storage](resources-and-allocations?id=storage-1) you wi
 Traditional secure copies (scp) will work and SDF is a secure [Globus](https://www.globus.org/how-it-works) endpoint. 
 
 #### Help! I've lost some files! What can I do?
-Some directories are periodically backed up. [Contact us](contact-us.md) to retrieve the last back up. 
+Some directories are periodically backed up (if arrangements were made in advance). [Contact us](contact-us.md) to retrieve the last back up. 
 
 ## Running Jobs
 Depending on your application, you can run jobs in a variety ways:   
