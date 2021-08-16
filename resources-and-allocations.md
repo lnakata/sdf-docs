@@ -69,14 +69,15 @@ If you are a SDF User, and find that the Shared partition is restrictive for you
 
 | | | |
 |--- |--- |--- |
-|atlas  |ATLAS Group    |Yee/Wei |
-|cryoem |CryoEM Group   |Yee     |
-|hps      |HPS Group      |Omar    |
-|LCLS     |LCLS Group     |Wilko   |
-|ml         |Machine Learning Initiative |      Daniel/Yee |
-|neutrino       |Neutrino Group | Kazu |
-|shared |Everyone           |Renata/Yee |
-|suncat |SUNCAT Group   | Johanne|
-|supercdms|SuperCDMS Group | Tina|
+|atlas  |ATLAS Group    |Yee (ytl)/Wei (yangw)|
+|cryoem |CryoEM Group   |Yee (ytl)    |
+|hps      |HPS Group      |Omar Moreno (omoreno)  |
+|KIPAC |KIPAC/DES groups|Stuart Marshall (marshall)|
+|LCLS     |LCLS Group     |Wilko (wilko)  |
+|ml         |Machine Learning Initiative |      Daniel (dratner)/Yee (ytl) |
+|neutrino       |Neutrino Group | Kazu (kterao)|
+|shared |Everyone           |Renata (renata)/Yee (ytl)|
+|suncat |SUNCAT Group   | Johannes (vossj)|
+|supercdms|SuperCDMS Group | Tina (cartaro)|
 
 
