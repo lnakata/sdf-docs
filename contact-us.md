@@ -24,18 +24,18 @@ S3DF and you don't see your facility in this table.
 |Rubin | Richard Dubois | rubin_users |
 |SuperCDMS | Concetta Cartaro | cdms |
 |LCLS | Silke Nelson | ps-users |
-|MLI| Daniel Ratner | - |
-|Neutrino| Kazuhiro Terao | - |
-|AD | Greg White | - |
+|MLI| Daniel Ratner | mli |
+|Neutrino| Kazuhiro Terao | nu |
+|AD | Greg White | cd |
 |SUNCAT | Johannes Voss| suncat-norm |
 |Fermi | Richard Dubois| glast-pipeline |
 |EPPTheory | Tom Rizzo | theorygrp |
-|FACET | Nathan Majernik | - |
+|FACET | Nathan Majernik | facet |
 |DESC | Tom Glanzman | desc |
 |KIPAC | Stuart Marshall | ki |
 |RFAR | David Bizzozero | rfar |
-|SIMES | Tom Devereaux | - |
-|CryoEM | Yee Ting Li | - |
-|SSRL | Riti Sarangi | - |
-|LDMX | Omar Moreno | - |
-|HPS | Omar Moreno | - |
+|SIMES | Tom Devereaux | simes |
+|CryoEM | Yee Ting Li | cryo-data |
+|SSRL | Riti Sarangi | ssrl |
+|LDMX | Omar Moreno | ldmx |
+|HPS | Omar Moreno | hps |
