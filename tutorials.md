@@ -99,9 +99,9 @@ SSH login access to S3DF is via the ```s3dflogin.slac.stanford.edu``` pool. Thes
 
 S3DF primary filesystems are mounted under ```/sdf``` on all S3DF interactive and compute hosts. This includes S3DF home directories, per-facility “group” space and multi-petabyte storage for the bulk of science data. These primary filesystems will eventually replace all legacy SLAC storage. The DDN Lustre storage from SDF “1.0” is also mounted across all S3DF interactive and compute hosts under ```/fs/ddn/sdf```. Several facilities invested in 5 years of DDN storage, and we will honor this investment. Legacy filesystems (GPFS, NFS) have already surpassed the 5 year lifecycle. To help migrate data off legacy storage, we have mounted a select number of GPFS filesystems on the interactive nodes. AFS is also mounted read-only on interactive nodes. See [data and storage](data-and-storage.md).
 
-**What is the future of AFS?**
+**What is the future of AFS and Legacy GPFS/NFS?**
 
-AFS will be retired in June 2024, along with other RHEL6 infrastructure and platforms. Our goal is for S3DF native storage to be securely exported to test stands, control rooms, lab workstations, etc via authenticated NFS v4 where required. Before we shutdown AFS, we will create a final copy of the entire “/afs/slac” directory tree and make select portions of it available read-only for a limited period of time. This will allow groups to copy data they may have forgotten to migrate earlier.
+AFS will be retired in 2024, along with other RHEL6 infrastructure and platforms. We are working to contact all groups about migrating their data to S3DF. Our goal is for S3DF native storage to be securely exported to test stands, control rooms, lab workstations, etc via authenticated NFS v4 where required. Before we shutdown AFS, we will create a final copy of the entire “/afs/slac” directory tree and make select portions of it available read-only for a limited period of time. This will allow groups to copy data they may have forgotten to migrate earlier.
 
 **Is there any ‘free’ S3DF Storage?**
 
