@@ -101,7 +101,7 @@ S3DF primary filesystems are mounted under ```/sdf``` on all S3DF interactive an
 
 **What is the future of AFS and Legacy GPFS/NFS?**
 
-AFS will be retired in 2024, along with other RHEL6 infrastructure and platforms. We are working to contact all groups about migrating their data to S3DF. Our goal is for S3DF native storage to be securely exported to test stands, control rooms, lab workstations, etc via authenticated NFS v4 where required. Before we shutdown AFS, we will create a final copy of the entire “/afs/slac” directory tree and make select portions of it available read-only for a limited period of time. This will allow groups to copy data they may have forgotten to migrate earlier.
+AFS and legacy GPFS/NFS will be retired in 2024, along with other RHEL6 infrastructure and platforms. We are working to contact all groups about migrating their data to S3DF. Our goal is for S3DF native storage to be securely exported to test stands, control rooms, lab workstations, etc via authenticated NFS v4 where required. Before we shutdown AFS, we will create a final copy of the entire “/afs/slac” directory tree and make select portions of it available read-only for a limited period of time. This will allow groups to copy data they may have forgotten to migrate earlier. We will attempt to do something similar with portions of the legacy GPFS/NFS areas if we are unable to contact the data owners beforehand. Any backup copies of this legacy data, if it exists, will be kept for at least 1 year after its originating file server is retired.
 
 **Is there any ‘free’ S3DF Storage?**
 
